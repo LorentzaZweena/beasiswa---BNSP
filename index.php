@@ -56,19 +56,31 @@
                             </div>
                             <div class="mb-3">
                                 <label for="semester" class="form-label fw-semibold">Semester saat ini</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Pilih</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
+                                <select class="form-select" aria-label="Default select example" name="semester" id="semester">
+                                    <!-- looping -->
+                                    <option selected>-- Pilih semester --</option>
+                                    <?php for ($i = 1; $i <= 8; $i++) : ?>
+                                        <option value="<?= $i; ?>"><?= $i; ?></option>
+                                    <?php endfor; ?>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-dark">Submit</button>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label fw-semibold">IPK terakhir</label>
+                                <input type="text" class="form-control" id="ipk" aria-describedby="emailHelp" placeholder="Masukkan IPK anda" name="ipk">
+                            </div>
+                            <div class="mb-3">
+                                <label for="jenis_beasiswa" class="form-label fw-semibold">Pilihan beasiswa</label>
+                                <select class="form-select" aria-label="Default select example" name="jenis_beasiswa" id="jenis_beasiswa">
+                                    <option selected>-- Pilihan beasiswa --</option>
+                                    <option value="">Akademik</option>
+                                    <option value="">non-akademik</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label fw-semibold">Upload berkas syarat</label>
+                                <input type="file" class="form-control" id="filename" aria-describedby="emailHelp" placeholder="Masukkan IPK anda" name="filename">
+                            </div>
+                            <button type="submit" class="btn btn-dark" id="submit" name="submit">Submit</button>
                         </form>
                     </div>
                 </div>
