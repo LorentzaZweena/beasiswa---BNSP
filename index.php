@@ -12,6 +12,8 @@
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
 
@@ -128,8 +130,20 @@
             $sql = "INSERT INTO tbl_daftar (nama, email, hp, semester, ipk, id, status_pengajuan, filename) VALUES ('$nama', '$email', '$nohp', '$semester', '$ipk', '$jenis_beasiswa', '$status', '$filename')";
 
             if($connect->query($sql)){
-                echo "<script>alert('Sukses'); window.location.href = 'hasil.php';</script>";
+                echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: 'Data berhasil disimpan',
+                        confirmButtonColor: '#212529'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'hasil.php';
+                        }
+                    });
+                </script>";
             }
+            
         }
      ?>
 

@@ -37,7 +37,7 @@
 <!-- hasil -->
 <div class="container mt-5">
     <h1 class="mb-2">Hasil beasiswa</h1>
-<table class="table text-center border border-dark mt-4">
+<table class="table text-center border border-dark mt-">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -51,7 +51,7 @@
   </thead>
   <tbody class="table-group-divider mt-3">
   <?php 
-  $no = 1;
+            $no = 1;
             $sql = "SELECT * FROM tbl_daftar";
 
             $query = mysqli_query($connect, $sql);
@@ -64,8 +64,9 @@
                 echo "<td>".$data['hp']."</td>";
                 echo "<td>".$data['semester']."</td>";
                 echo "<td>".$data['ipk']."</td>";
-                echo "<td>".$data['status_pengajuan']."</td>";
-
+                echo "<td>
+                        <button type='button' class='btn btn-danger'>".$data['status_pengajuan']."</button>
+                 </td>";
                 echo "</tr>";
             }
         ?>
