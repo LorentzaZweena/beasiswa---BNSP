@@ -46,6 +46,7 @@
       <th scope="col">No HP</th>
       <th scope="col">Semester</th>
       <th scope="col">IPK</th>
+      <th scope="col">Foto</th>
       <th scope="col">Status pengajuan</th>
     </tr>
   </thead>
@@ -64,8 +65,9 @@
                 echo "<td>".$data['hp']."</td>";
                 echo "<td>".$data['semester']."</td>";
                 echo "<td>".$data['ipk']."</td>";
+                echo "<td><img src='./image/".$data['filename']."' width='100' height='100' class='img-thumbnail'></td>";
                 echo "<td>
-                        <button type='button' class='btn btn-danger'>".$data['status_pengajuan']."</button>
+                        <button type='button' class='btn btn-danger mt-2'>".$data['status_pengajuan']."</button>
                  </td>";
                 echo "</tr>";
             }
