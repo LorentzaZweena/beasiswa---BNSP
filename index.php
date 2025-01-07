@@ -25,7 +25,7 @@
                 <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Pilihan beasiswa</a>
+                        <a class="nav-link" aria-current="page" href="jenis-beasiswa.php">Pilihan beasiswa</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Daftar beasiswa</a>
@@ -56,7 +56,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label fw-semibold">No HP</label>
-                                <input type="number" class="form-control" id="nohp" aria-describedby="emailHelp" placeholder="Masukkan nomor HP anda" name="nohp">
+                                <input type="number" class="form-control" id="nohp" aria-describedby="emailHelp" placeholder="Masukkan nomor HP anda" name="nohp" required>
                             </div>
                             <div class="mb-3">
                                 <label for="semester" class="form-label fw-semibold">Semester saat ini</label>
@@ -70,7 +70,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label fw-semibold">IPK terakhir</label>
-                                <input type="text" class="form-control" id="ipk" aria-describedby="emailHelp" placeholder="Masukkan IPK anda" name="ipk">
+                                <input type="text" class="form-control" id="ipk" aria-describedby="emailHelp" placeholder="Masukkan IPK anda" name="ipk" onkeyup="checkIPK()">
+                                <small id="ipkMessage" class="form-text"></small>
                             </div>
                             <div class="mb-3">
                                 <label for="jenis_beasiswa" class="form-label fw-semibold">Pilihan beasiswa</label>
@@ -107,5 +108,24 @@
 
     <!-- script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+function checkIPK() {
+    const ipk = document.getElementById('ipk').value;
+    const nomor = 2.4;
+    const ipkMessage = document.getElementById('ipkMessage');
+    
+    if (parseFloat(ipk) < 3) {
+        ipkMessage.style.color = 'red';
+        ipkMessage.textContent = 'IPK anda kurang';
+    } else {
+        ipkMessage.style.color = 'red';
+        ipkMessage.textContent = 'Anda eligible';
+    }
+    window.onload = nomor;
+}
+
+document.getElementById('ipk').addEventListener('input', checkIPK);
+</script>
+
   </body>
 </html>
