@@ -121,7 +121,7 @@
             $filename = $_FILES['filename']['name'];
             $tmp_name = $_FILES['filename']['tmp_name'];
             $status = "Belum terverifikasi";
-            $folder = "../image" . $filename;
+            $folder = "./image/" . $filename;
             move_uploaded_file($tmp_name, $folder);
 
             //insert data ke db
