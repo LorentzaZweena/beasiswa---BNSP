@@ -2,7 +2,7 @@
     require_once 'koneksi.php';
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -70,8 +70,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label fw-semibold">IPK terakhir</label>
-                                <input type="text" class="form-control" id="ipk" aria-describedby="emailHelp" placeholder="Masukkan IPK anda" name="ipk" onkeyup="checkIPK()">
-                                <small id="ipkMessage" class="form-text"></small>
+                                <input type="text" class="form-control" id="ipk" aria-describedby="emailHelp" name="ipk" readonly>
+                                <small id="keterangan"></small>
                             </div>
                             <div class="mb-3">
                                 <label for="jenis_beasiswa" class="form-label fw-semibold">Pilihan beasiswa</label>
@@ -96,7 +96,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label fw-semibold">Upload berkas syarat</label>
-                                <input type="file" class="form-control" id="filename" aria-describedby="emailHelp" placeholder="Masukkan berkas anda" name="filename">
+                                <input type="file" class="form-control" id="filename" aria-describedby="emailHelp" placeholder="Masukkan berkas anda" name="filename" required>
                             </div>
                             <button type="submit" class="btn btn-dark" id="submit" name="submit">Submit</button>
                         </form>
@@ -108,24 +108,51 @@
 
     <!-- script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <script>
-function checkIPK() {
-    const ipk = document.getElementById('ipk').value;
-    const nomor = 2.4;
-    const ipkMessage = document.getElementById('ipkMessage');
-    
-    if (parseFloat(ipk) < 3) {
-        ipkMessage.style.color = 'red';
-        ipkMessage.textContent = 'IPK anda kurang';
-    } else {
-        ipkMessage.style.color = 'red';
-        ipkMessage.textContent = 'Anda eligible';
-    }
-    window.onload = nomor;
-}
+        //DOM : memungkinkan JS untuk berinteraksi dengan elemen - elemen pada halaman web. Such as : Membaca, memanipulasi / mengubah content, attribute / struktur dokumen untuk berinteraksi dengan DOM, pakai perintah document
 
-document.getElementById('ipk').addEventListener('input', checkIPK);
-</script>
+        //DOM : Document Object Model
 
+        //Event listener : mekanisme untuk "mendengarkan" suatu peristiwa (event) yang terjadi pada elemen HTML, seperti click tombol, gerakan mouse, penekanan tombol keyboard.
+
+        //addEventListener : dapat menambahkan logika yang akan dijalankan berdasarkan interaksi user
+        function ipk(){
+            return Math.random() * 2 + 2;
+        }
+        
+        //Jika menambahkan event listener untuk DOMContentLoaded, script akan langsung di excecute segera setelah struktur HTML halaman sepenuhnya di load, bahkan sebelum gambar / elemen media lainnya di load.
+        document.addEventListener("DOMContentLoaded", function(){
+            const ipkPengguna = ipk();
+            const ipkField = document.getElementById("ipk");
+            ipkField.value = ipkPengguna.toFixed(2);
+
+            const beasiswa = document.getElementById("jenis_beasiswa");
+            const submit = document.getElementById("submit");
+            const upload = document.getElementById("filename");
+
+            if (ipkPengguna < 3.00) {
+                beasiswa.disabled = true;
+                submit.disabled = true;
+                upload.disabled = true;
+
+                const warna = document.getElementById("keterangan");
+                warna.style.color = "red";
+
+                var keterangan = "IPK anda tidak memenuhi syarat";
+                document.getElementById("keterangan").innerHTML = keterangan;
+            } else {
+                beasiswa.disabled = false;
+                submit.disabled = false;
+                upload.disabled = false;
+
+                const warna2 = document.getElementById("keterangan");
+                warna2.style.color = "green";
+
+                var keterangan2 = "Selamat IPK anda memenuhi syarat dan bisa melanjutkan ke tahap berikutnya";
+                document.getElementById("keterangan").innerHTML = keterangan2;
+            }
+        });
+    </script>
   </body>
 </html>
