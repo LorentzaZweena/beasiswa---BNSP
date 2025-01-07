@@ -31,7 +31,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Daftar beasiswa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Hasil beasiswa</a>
+                        <a class="nav-link" aria-current="page" href="hasil.php">Hasil beasiswa</a>
                     </li>
                 </ul>
             </div>
@@ -45,7 +45,7 @@
                 <div class="card">
                     <h5 class="card-header fs-2 p-4 text-center bg-dark text-light">Pendaftaran beasiswa</h5>
                     <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label fw-semibold">Nama lengkap</label>
                                 <input type="text" class="form-control" id="nama" aria-describedby="emailHelp" placeholder="Masukkan nama lengkap" name="nama" required>
@@ -105,6 +105,33 @@
             </div>
         </div>
     </div>
+
+    <!-- kirim data -->
+     <?php
+        if (isset($_POST['submit'])) {
+            //ambil data dari form
+            $nama = $_POST['nama'];
+            $email = $_POST['email'];
+            $nohp = $_POST['nohp'];
+            $semester = $_POST['semester'];
+            $ipk = $_POST['ipk'];
+            $jenis_beasiswa = $_POST['jenis_beasiswa'];
+
+            //ambil data file
+            $filename = $_FILES['filename']['name'];
+            $tmp_name = $_FILES['filename']['tmp_name'];
+            $status = "Belum terverifikasi";
+            $folder = "../image" . $filename;
+            move_uploaded_file($tmp_name, $folder);
+
+            //insert data ke db
+            $sql = "INSERT INTO tbl_daftar (nama, email, hp, semester, ipk, id, status_pengajuan, filename) VALUES ('$nama', '$email', '$nohp', '$semester', '$ipk', '$jenis_beasiswa', '$status', '$filename')";
+
+            if($connect->query($sql)){
+                echo "<script>alert('Sukses'); window.location.href = 'hasil.php';</script>";
+            }
+        }
+     ?>
 
     <!-- script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

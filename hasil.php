@@ -1,5 +1,5 @@
 <?php
-    include 'koneksi.php';
+    include "koneksi.php";
 ?>
 
 <!doctype html>
@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BNSP | Jenis beasiswa</title>
+    <title>BNSP | Hasil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
@@ -21,40 +21,58 @@
                 <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="jenis-beasiswa.php">Pilihan beasiswa</a>
+                        <a class="nav-link" aria-current="page" href="jenis-beasiswa.php">Pilihan beasiswa</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="index.php">Daftar beasiswa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="hasil.php">Hasil beasiswa</a>
+                        <a class="nav-link active" aria-current="page" href="hasil.php">Hasil beasiswa</a>
                     </li>
                 </ul>
             </div>
     </div>
 </nav>
 
-<!-- main content -->
+<!-- hasil -->
 <div class="container mt-5">
-    <h1 class="mb-4">Jenis beasiswa</h1>
-    <div class="d-flex flex-wrap gap-3">
-        <?php
-        $sql = "SELECT * FROM tbl_beasiswa";
-        $result = mysqli_query($connect, $sql);
-        while ($data = mysqli_fetch_array($result)) {
-        ?>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><?= $data['jenis_beasiswa']; ?></h5>
-                    <p class="card-text"><?= $data['keterangan']; ?></p>
-                </div>
-            </div>
-        <?php
-        }
-        ?>
-    </div>
-</div>
+    <h1 class="mb-2">Hasil beasiswa</h1>
+<table class="table text-center border border-dark mt-4">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Nama</th>
+      <th scope="col">Email</th>
+      <th scope="col">No HP</th>
+      <th scope="col">Semester</th>
+      <th scope="col">IPK</th>
+      <th scope="col">Status pengajuan</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider mt-3">
+  <?php 
+  $no = 1;
+            $sql = "SELECT * FROM tbl_daftar";
 
+            $query = mysqli_query($connect, $sql);
+
+            while($data = mysqli_fetch_array($query)){
+                echo "<tr>";
+                echo "<td>".$no++."</td>";
+                echo "<td>".$data['nama']."</td>";
+                echo "<td>".$data['email']."</td>";
+                echo "<td>".$data['hp']."</td>";
+                echo "<td>".$data['semester']."</td>";
+                echo "<td>".$data['ipk']."</td>";
+                echo "<td>".$data['status_pengajuan']."</td>";
+
+                echo "</tr>";
+            }
+        ?>
+
+  </tbody>
+</table>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
