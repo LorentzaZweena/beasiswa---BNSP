@@ -36,7 +36,7 @@
 
 <!-- hasil -->
 <div class="container mt-5">
-    <h1 class="mb-2">Hasil beasiswa</h1>
+    <h1 class="mb-3">Hasil beasiswa</h1>
 <table class="table text-center border border-dark mt-">
   <thead>
     <tr>
