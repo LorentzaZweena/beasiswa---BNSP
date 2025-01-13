@@ -84,12 +84,6 @@
                                         $sql = "SELECT * FROM tbl_beasiswa";
                                         // eksekusi
                                         $result = mysqli_query($connect, $sql);
-                                        //cara 1
-                                        // while ($data = mysqli_fetch_array($result)) {
-                                        //     echo "<option value='" . $data['id'] . "'>" . $data['jenis_beasiswa'] . "</option>";
-                                        // }
-
-                                        //cara 2
                                         foreach ($result as $data) {
                                             echo "<option value='" . $data['id'] . "'>" . $data['jenis_beasiswa'] . "</option>";
                                         }
